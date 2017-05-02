@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/bg">
+    <!-- TODO: Update blank fragment layout -->
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="center">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="170dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@drawable/logo" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="center">
+
+            <Button
+                android:id="@+id/nearest"
+                android:layout_width="0dp"
+                android:layout_height="90dip"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:layout_weight="1"
+                android:background="@color/color1"
+                android:text=" Nearest Less Crowded"
+                android:padding="16dp"
+                android:drawableLeft="@mipmap/ic_near_me_white_24dp"
+                android:textSize="14sp"
+                android:textColor="@color/white"  />
+
+            <Button
+                android:id="@+id/selectBranch"
+                android:layout_width="0dp"
+                android:layout_height="90dip"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_weight="1"
+                android:background="@color/color2"
+                android:text=" Select Branch"
+                android:padding="16dp"
+                android:drawableLeft="@mipmap/ic_account_balance_white_24dp"
+                android:textSize="14sp"
+                android:textColor="@color/white"  />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="center">
+
+            <Button
+                android:id="@+id/favorite"
+                android:layout_width="0dp"
+                android:layout_height="90dip"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+
+                android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:layout_weight="1"
+                android:background="@color/color3"
+                android:text=" Favorite Branch"
+                android:padding="16dp"
+                android:drawableLeft="@mipmap/ic_favorite_white_24dp"
+                android:textSize="14sp"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/contactus"
+                android:layout_width="0dp"
+                android:layout_height="90dip"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_weight="1"
+                android:background="@color/color4"
+                android:text=" Contact Us"
+                android:padding="16dp"
+                android:drawableLeft="@mipmap/ic_email_white_24dp"
+                android:textSize="14sp"
+                android:textColor="@color/white" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="center">
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:gravity="center_vertical|center_horizontal"
+            android:textAlignment="center">
+
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

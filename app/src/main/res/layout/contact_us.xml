@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/colorAccent">
+
+    <TextView
+        android:text="Fax: 0138433566"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fax"
+        android:clickable="true"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="14dp"
+        android:layout_below="@+id/telephone"
+        android:layout_alignLeft="@+id/telephone"
+        android:layout_alignStart="@+id/telephone"
+        android:layout_marginTop="84dp" />
+
+    <TextView
+        android:text="Tel: 013843356"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/telephone"
+        android:clickable="true"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="14dp"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView7"
+        android:layout_marginRight="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_alignBottom="@+id/email"
+        android:layout_toLeftOf="@+id/email"
+        android:layout_toStartOf="@+id/email" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        android:id="@+id/imageView9"
+        android:layout_marginLeft="86dp"
+        android:layout_marginStart="86dp"
+        android:layout_alignBottom="@+id/imageView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Email: bcm-support@gmail.com"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="14dp"
+        android:clickable="true"
+        android:layout_marginBottom="56dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_above="@+id/imageView8"
+        android:layout_toRightOf="@+id/imageView9"
+        android:layout_toEndOf="@+id/imageView9" />
+
+    <TextView
+        android:text="Contact Us"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:fontFamily="monospace"
+        android:textSize="25sp"
+        android:textColor="@color/colorPrimaryText"
+        android:textAlignment="center"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/sym_action_call"
+        android:id="@+id/imageView8"
+        android:layout_above="@+id/fax"
+        android:layout_alignLeft="@+id/imageView9"
+        android:layout_alignStart="@+id/imageView9" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_print_black_24dp"
+        android:id="@+id/imageView3"
+        android:layout_alignBottom="@+id/fax"
+        android:layout_alignLeft="@+id/imageView8"
+        android:layout_alignStart="@+id/imageView8" />
+
+    <Button
+        android:id="@+id/Home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="0dp"
+        android:height="8dp"
+        android:drawableRight="@mipmap/ic_home_black_24dp"
+        android:background="@color/colorAccent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:padding="16dp"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

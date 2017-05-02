@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Bank Crowd Management</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_phone_number">Sign in</string>
+
+    <!-- Strings related to login -->
+
+    <string name="prompt_phone">  0598765432 </string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+
+    <string name="error_invalid_phone">This phone is too short</string>
+    <string name="error_incorrect_phone">This phone number is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="title_activity_maps">Map</string>
+    <!--baseUrl-->
+    <string name="baseUrlApi">http://bankproject1.com/api/</string>
+
+
+</resources>
