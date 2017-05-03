@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -41,7 +42,7 @@ public class NearestAndLessCrowded extends Fragment {
     String service;
     double Latitude;
     double Longitude;
-    Button home;
+    TextView home;
     List<String> branches = new ArrayList<>();
 
 
@@ -99,8 +100,8 @@ public class NearestAndLessCrowded extends Fragment {
 
             );
 
-            //back to the home button
-            home = (Button) view.findViewById(R.id.Home);
+            //Go to Home layout
+            home =(TextView) view.findViewById(R.id.Home);
             home.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -113,6 +114,7 @@ public class NearestAndLessCrowded extends Fragment {
 
                 }
             });
+
             rc(view);
         }else{
             // can't get location

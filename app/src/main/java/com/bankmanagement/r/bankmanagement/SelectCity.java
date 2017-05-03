@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -40,7 +41,7 @@ public class SelectCity extends Fragment {
     String activity;
     String service;
     List<String> cityName = new ArrayList<>();
-    Button home;
+    TextView home;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,8 +87,8 @@ public class SelectCity extends Fragment {
 
         );
 
-        //back to the home button
-        home =(Button) myView.findViewById(R.id.Home);
+        //Go to Home layout
+        home =(TextView) myView.findViewById(R.id.Home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +101,7 @@ public class SelectCity extends Fragment {
 
             }
         });
+
 
         rc(myView);
         return myView;

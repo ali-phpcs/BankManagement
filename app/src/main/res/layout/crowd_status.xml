@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@color/colorAccent">
+    android:background="@drawable/bg">
 
     <TextView
         android:text="Crowd Status"
@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/CrowdStatus"
         android:fontFamily="monospace"
-        android:textSize="25sp"
+        android:textSize="18sp"
         android:textColor="@color/colorPrimaryText"
         android:textAlignment="center"
         android:layout_alignParentEnd="true"
@@ -22,25 +22,32 @@
         android:layout_alignStart="@+id/textView"/>
 
     <TextView
-        android:text="Customer Service"
+        android:id="@+id/serviceType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="109dp"
-        android:id="@+id/serviceType"
-        android:textSize="16dp"
         android:layout_below="@+id/CrowdStatus"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:text="Customer Service"
+        android:textColor="@color/blue"
+        android:textSize="16dp" />
 
     <Button
-        android:text="Add To Favorite"
+        android:text=" Add To Favorite "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/AddToFavorite"
-        android:textSize="16dp"
+        android:textSize="13dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/sample"/>
+        android:layout_margin="15dp"
+
+        android:background="@drawable/sample"
+
+        android:padding="10dp"
+        android:drawableLeft="@mipmap/ic_favorite_white_24dp"
+
+        android:textColor="@color/white"/>
 
     <TextView
         android:text="##"
@@ -54,51 +61,63 @@
         android:id="@+id/wating" />
 
     <TextView
-        android:text="Number of wating customer"
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:layout_marginBottom="28dp"
-        android:id="@+id/textView8"
         android:layout_above="@+id/AddToFavorite"
-        android:layout_alignLeft="@+id/CrowdStatus"
-        android:layout_alignStart="@+id/CrowdStatus" />
+        android:layout_alignEnd="@+id/waiting_time"
+        android:layout_alignRight="@+id/waiting_time"
+        android:layout_marginBottom="59dp"
+        android:text="Number of wating customer"
+        android:textColor="@color/blue"
+        android:textSize="16dp" />
 
     <TextView
-        android:text="BranchName"
+        android:id="@+id/BranchName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
-        android:id="@+id/BranchName"
-        android:textSize="16dp"
-        android:layout_below="@+id/Route"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignEnd="@+id/wating"
+        android:layout_alignRight="@+id/wating"
+        android:layout_below="@+id/Refresh"
+        android:layout_marginTop="41dp"
+        android:text="BranchName"
+        android:textColor="@color/blue"
+        android:textSize="16dp" />
 
     <Button
-        android:text="Route"
+        android:text=" Route "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Route"
+
+        android:textSize="13dp"
+        android:background="@drawable/sample"
+        android:padding="10dp"
+        android:drawableLeft="@mipmap/ic_near_me_white_24dp"
+
+
+        android:textColor="@color/white"
         android:layout_alignBaseline="@+id/serviceType"
         android:layout_alignBottom="@+id/serviceType"
         android:layout_toRightOf="@+id/AddToFavorite"
-        android:layout_toEndOf="@+id/AddToFavorite"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp"
-        android:background="@drawable/sample"/>
+        android:layout_toEndOf="@+id/AddToFavorite" />
 
     <Button
-        android:text="Refresh"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Refresh"
+        android:textSize="13dp"
+        android:background="@drawable/sample"
+        android:text=" Refresh "
+        android:padding="10dp"
+        android:drawableLeft="@drawable/quantum_ic_refresh_white_24"
+
+        android:textColor="@color/white"
         android:layout_alignBaseline="@+id/serviceType"
         android:layout_alignBottom="@+id/serviceType"
-        android:layout_toLeftOf="@+id/AddToFavorite"
-        android:layout_toStartOf="@+id/AddToFavorite"
-        android:layout_marginRight="11dp"
-        android:layout_marginEnd="11dp"
-        android:background="@drawable/sample"/>
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView6"
@@ -107,28 +126,25 @@
         android:layout_below="@+id/BranchName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp"
-        android:text="Waiting time" />
+        android:text="Waiting time"
+        android:textColor="@color/blue" />
 
     <TextView
         android:id="@+id/waiting_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:text="00:00"
         android:layout_below="@+id/textView6"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
-
-        android:text="00:00" />
-    <Button
-        android:id="@+id/Home"
+        android:layout_marginTop="45dp" />
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="0dp"
-        android:height="8dp"
         android:drawableRight="@mipmap/ic_home_black_24dp"
-        android:background="@color/colorAccent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:padding="16dp"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/Home"
+        android:layout_alignBottom="@+id/CrowdStatus"
+        android:layout_alignRight="@+id/Route"
+        android:layout_alignEnd="@+id/Route" />
 
 </RelativeLayout>

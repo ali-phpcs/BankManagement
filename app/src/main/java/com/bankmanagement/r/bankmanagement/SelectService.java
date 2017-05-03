@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * The service layout that contains a list of services.
@@ -26,7 +27,7 @@ public class SelectService extends Fragment {
     String branch;
    // String Latitude;
     //String Longitude;
-    Button home;
+    TextView home;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -144,8 +145,8 @@ public class SelectService extends Fragment {
             }
         });
 
-        //back to the home button
-        home =(Button) view.findViewById(R.id.Home);
+        //Go to Home layout
+        home =(TextView) view.findViewById(R.id.Home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,6 +159,7 @@ public class SelectService extends Fragment {
 
             }
         });
+
         return view;
     }
 

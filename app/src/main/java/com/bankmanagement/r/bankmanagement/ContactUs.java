@@ -24,7 +24,7 @@ public class ContactUs extends Fragment {
     View myView;
     TextView mail;
     TextView phone;
-    Button home;
+   TextView home;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,8 +58,8 @@ public class ContactUs extends Fragment {
             }
         });
 
-        //back to the home button
-        home =(Button) myView.findViewById(R.id.Home);
+        //Go to Home layout
+        home =(TextView) myView.findViewById(R.id.Home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +72,7 @@ public class ContactUs extends Fragment {
 
             }
         });
+
 
         return myView;
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonElement;
@@ -42,7 +43,7 @@ public class SendFeedback extends Fragment {
     EditText q2;
     EditText q3;
     EditText q4;
-    Button home;
+   TextView home;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,8 +66,8 @@ public class SendFeedback extends Fragment {
             }
         });
 
-        //back to the home button
-        home =(Button) myView.findViewById(R.id.Home);
+        //Go to Home layout
+        home =(TextView) myView.findViewById(R.id.Home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +80,7 @@ public class SendFeedback extends Fragment {
 
             }
         });
+
         return myView;
 
     }

@@ -35,7 +35,7 @@
         android:inputType="textPersonName"
         android:text="BCM"
         android:id="@+id/TextView2"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:fontFamily="serif"
         android:layout_centerVertical="true"

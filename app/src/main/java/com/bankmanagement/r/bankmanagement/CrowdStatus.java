@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,8 +42,12 @@ public class CrowdStatus extends Fragment {
     String service;
     Button FavoriteBranch;
     private Retrofit retrofit_object;
-    Button b1;
-    Button home;
+    Button route;
+    TextView home;
+    double latitude;
+    double longitude;
+    Button refresh;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,8 +66,6 @@ public class CrowdStatus extends Fragment {
         waiting_time = (TextView) myView.findViewById(R.id.waiting_time);
         FavoriteBranch = (Button) myView.findViewById(R.id.AddToFavorite);
 
-
-
         BranchName.setText(branch);
         if (service == "Teller_Service") {
             serviceType.setText("Teller Service");
@@ -76,9 +79,7 @@ public class CrowdStatus extends Fragment {
         GetServerData service_api = retrofit_object.create(GetServerData.class);
 
 
-        //get branches for the selected city
-
-
+        //Getting vrowd statues of the selected branch from the database
         Call<JsonElement> get_Cities = service_api.getData(branch, service);
         get_Cities.enqueue(new Callback<JsonElement>() {
                                @Override
@@ -107,23 +108,43 @@ public class CrowdStatus extends Fragment {
                                    Log.w("EE", "error");
                                }
                            });
-         b1 = (Button) myView.findViewById(R.id.Route);
 
-        b1.setOnClickListener(new View.OnClickListener() {
+        route = (Button) myView.findViewById(R.id.Route);
+        route.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-
-                Intent in = new Intent(getActivity(),MapsActivity.class );
-
-                startActivity(in);
-                //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                //Ali please add query here to
+                // retrieve the latitude and longitude of the branch location
+                latitude=40.714728;
+                longitude=-73.998672;
+                String lable=getArguments().getString("branch")+" Branch";
+                String uriBegin="geo:"+latitude+","+ longitude;
+                String query= latitude + "," + longitude+ "(" + lable+")";
+                String encodedQuery = Uri.encode(query);
+                String uriString = uriBegin+ "?q=" + encodedQuery + "&z=16";
+                Uri uri =Uri.parse(uriString);
+                Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+                Toast.makeText(getActivity(), "Location of the branch", Toast.LENGTH_SHORT).show();
             }
 
 
     });
 
+        refresh = (Button) myView.findViewById(R.id.Refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                //refresh the values of the crowd status
+
+            }
+
+
+        });
         FavoriteBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,20 +176,20 @@ public class CrowdStatus extends Fragment {
             }
         });
 
-        //back to the home button
-        home =(Button) myView.findViewById(R.id.Home);
+        //Go to Home layout
+        home =(TextView) myView.findViewById(R.id.Home);
         home.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-                                        FragmentManager fm = getFragmentManager();
-                                        FragmentTransaction ft = fm.beginTransaction();
-                                        ft.replace(R.id.content_frame, new home());
-                                        ft.addToBackStack(null);
-                                        ft.commit();
-                                    }}
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.content_frame, new home());
+                ft.addToBackStack(null);
+                ft.commit();
 
-                                    );
+            }
+        });
 
         return myView;
 

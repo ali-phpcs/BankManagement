@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.bcm.bankcrowdmanagement.PhoneNumber"
+    tools:context="com.bankmanagement.r.bankmanagement.PhoneNumber"
     android:background="@drawable/bg">
 
     <!-- Login progress -->
@@ -27,6 +27,7 @@
         android:layout_marginBottom="61dp"
         android:background="@drawable/sample"
         android:text="  Log In or Sign Up "
+        android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold" />
 
