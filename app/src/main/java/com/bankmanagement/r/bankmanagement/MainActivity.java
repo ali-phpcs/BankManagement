@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Display icon to open/ close navigation list
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         navigationView.setNavigationItemSelectedListener(this);
 
     }

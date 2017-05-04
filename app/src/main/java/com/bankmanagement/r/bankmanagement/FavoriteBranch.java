@@ -5,14 +5,20 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -43,21 +49,27 @@ public class FavoriteBranch extends Fragment {
     String city;
     List<String> branchelist = new ArrayList<>();
     TextView home;
+    ListView list_view;
+    ArrayAdapter<String> adapter;
+    ArrayList<String> list = new ArrayList<String>();
+    ArrayList<String> list_items=new ArrayList<String>();
+    int count=0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.favorite_branch, container, false);
-
+        list_view=(ListView) view.findViewById(R.id.favoriteList);
+        adapter=new ArrayAdapter<String>(view.getContext(),R.layout.city, branchelist);
+        list_view.setAdapter(adapter);
+        list_view.setChoiceMode(list_view.CHOICE_MODE_MULTIPLE_MODAL);
 
         retrofit_object = new Retrofit.Builder().
                 baseUrl(getResources().getString(R.string.baseUrlApi))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         GetServerData service_api = retrofit_object.create(GetServerData.class);
-
-
 
         Call<JsonElement> get_Cities = service_api.getData(MainActivity.UserPhone);
         get_Cities.enqueue(new Callback<JsonElement>() {
@@ -101,6 +113,63 @@ public class FavoriteBranch extends Fragment {
         });
 
 
+
+
+
+        //delete from the list
+
+        list_view.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+            @Override
+            public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean b) {
+              count =count+1;
+                actionMode.setTitle(count+ " Items selected");
+               list_items.add(branchelist.get(i));
+
+            }
+
+            @Override
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+
+               MenuInflater inflater =actionMode.getMenuInflater();
+               inflater.inflate(R.menu.my_context_menu,menu);
+
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+                switch(menuItem.getItemId()){
+                    case R.id.delete_id:
+                        for(String msg :list_items)
+                        {
+                            adapter.remove(msg);
+
+                    }
+                       Toast.makeText(view.getContext(), "Item removed", Toast.LENGTH_SHORT).show();
+                        count=0;
+                        actionMode.finish();
+                       return true;
+
+                   default:
+                       return false;
+
+                }
+
+                     //  return false;
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode actionMode) {
+
+            }
+        });
+
+
         rc(view);
         return view;
 
@@ -115,9 +184,9 @@ public class FavoriteBranch extends Fragment {
 
         Log.w("branch:",""+branchelist);
 
-        ArrayAdapter<?> aa = new ArrayAdapter<>(getActivity(), R.layout.city, branchelist);
-        ListView list = (ListView) view.findViewById(R.id.favoriteList);
-        list.setAdapter(aa);
+        list_view=(ListView) view.findViewById(R.id.favoriteList);
+        adapter=new ArrayAdapter<String>(view.getContext(),R.layout.city, branchelist);
+        list_view.setAdapter(adapter);
     }
 
     private void rc(final View view) {
