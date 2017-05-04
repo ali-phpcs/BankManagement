@@ -43,15 +43,15 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginRight="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_weight="1"
                 android:background="@color/color1"
-                android:text=" Nearest Less Crowded"
-                android:padding="16dp"
                 android:drawableLeft="@mipmap/ic_near_me_white_24dp"
-                android:textSize="14sp"
-                android:textColor="@color/white"  />
+                android:padding="16dp"
+                android:text=" Nearest Less Crowd"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/selectBranch"

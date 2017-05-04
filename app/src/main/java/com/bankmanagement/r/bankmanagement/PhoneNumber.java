@@ -33,6 +33,7 @@ public class PhoneNumber extends AppCompatActivity {
     EditText phone;
     String msg;
     private Retrofit retrofit_object;
+    static SqlData sql;
 
     @Override
 //For the back button , un enable it if the user logged out
@@ -58,7 +59,14 @@ public class PhoneNumber extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_number);
-
+        sql = new SqlData(this);
+        if(sql.isLogin())
+        {
+            Intent in = new Intent(getApplicationContext(), MainActivity.class);
+            in.putExtra("user'sPhone", sql.getPhoneNumber());
+            startActivity(in);
+        }
+        sql.closeDB();
         phone = (EditText) findViewById(R.id.phoneNumber);
         b1 = (Button) findViewById(R.id.sign_in_button);
 
@@ -130,6 +138,7 @@ public class PhoneNumber extends AppCompatActivity {
             valid = Patterns.PHONE.matcher(phone.getText().toString()).matches();
             if (valid == true) {
                 //Toast.makeText(getApplicationContext(), "phone number is valid", Toast.LENGTH_SHORT).show();
+                sql.loginUser(phone.getText().toString());
                 return true;
             } else if (valid == false) {
                 Toast.makeText(getApplicationContext(), "Please enter valid 10 digit phone number", Toast.LENGTH_SHORT).show();

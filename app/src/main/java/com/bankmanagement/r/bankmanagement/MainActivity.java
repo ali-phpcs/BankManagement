@@ -3,6 +3,7 @@ package com.bankmanagement.r.bankmanagement;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,13 +28,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolbar;
     public String userPhone;
     static String UserPhone;
+    MySQLite mySQLite;
+    SQLiteDatabase sqliteDB;
+    static SqlData sql;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        sql = new SqlData(this);
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.content_frame, new home());
@@ -145,6 +149,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_logout) {
             Intent intent = new Intent(getApplicationContext(), PhoneNumber.class);
             //send intent "To login = true" in order to unenable the back button after logout
+            sql.logOut();
+            UserPhone = "";
             intent.putExtra("ToLogin", true);
             getApplicationContext().startActivity(intent);
             Toast.makeText(getApplicationContext(), "Logged out", Toast.LENGTH_SHORT).show();

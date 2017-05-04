@@ -44,8 +44,8 @@ public class CrowdStatus extends Fragment {
     private Retrofit retrofit_object;
     Button route;
     TextView home;
-    double latitude;
-    double longitude;
+    String latitude;
+    String longitude;
     Button refresh;
 
 
@@ -65,8 +65,8 @@ public class CrowdStatus extends Fragment {
         BranchName = (TextView) myView.findViewById(R.id.BranchName);
         waiting_time = (TextView) myView.findViewById(R.id.waiting_time);
         FavoriteBranch = (Button) myView.findViewById(R.id.AddToFavorite);
-
         BranchName.setText(branch);
+
         if (service == "Teller_Service") {
             serviceType.setText("Teller Service");
         } else {
@@ -87,6 +87,9 @@ public class CrowdStatus extends Fragment {
                                    JsonArray Data = response.body().getAsJsonArray();
                                    countOfTticket.setText(Data.get(0).getAsJsonObject().get("count").toString().replace("\"", ""));
                                    TimeforWating = Data.get(0).getAsJsonObject().get("time_for_wating").toString().replace("\"", "");
+                                   latitude = Data.get(0).getAsJsonObject().get("B_Latitude").toString().replace("\"", "");
+                                   longitude = Data.get(0).getAsJsonObject().get("B_Longitude").toString().replace("\"", "");
+                                   setLatLog(latitude,longitude);
                                    String startTime = "00:00";
                                    int minutes = Integer.parseInt(TimeforWating);
                                    int h = minutes / 60 + Integer.parseInt(startTime.substring(0, 1));
@@ -115,10 +118,8 @@ public class CrowdStatus extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //Ali please add query here to
-                // retrieve the latitude and longitude of the branch location
-                latitude=40.714728;
-                longitude=-73.998672;
+                Log.i("latitude444",latitude);
+                Log.i("longitude",longitude);
                 String lable=getArguments().getString("branch")+" Branch";
                 String uriBegin="geo:"+latitude+","+ longitude;
                 String query= latitude + "," + longitude+ "(" + lable+")";
@@ -194,12 +195,25 @@ public class CrowdStatus extends Fragment {
         return myView;
 
     }
+
+    public void setLatLog(String lat , String _long){
+        this.longitude = _long;
+        this.latitude = lat;
+    }
     //Connection GetServerDataF
     public interface GetServerDataF {
         @GET("FavoriteBranch.php")
         Call<JsonElement> getDataf(@Query("phone") String phone, @Query("branch") String branch);
     }
 
+    public  void refresh()
+    {
+        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.CrowdStatus);
+        FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
+        fragTransaction.detach(currentFragment);
+        fragTransaction.attach(currentFragment);
+        fragTransaction.commit();
+    }
     //Connection Interface
     public interface GetServerData {
         @GET("getCrowd.php")
