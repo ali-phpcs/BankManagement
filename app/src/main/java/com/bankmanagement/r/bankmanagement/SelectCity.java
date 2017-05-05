@@ -59,7 +59,6 @@ public class SelectCity extends Fragment {
                 .build();
         GetServerData service = retrofit_object.create(GetServerData.class);
 
-
         //get Locations Info
         Call<JsonElement> get_Cities = service.getData();
         get_Cities.enqueue(new Callback<JsonElement>() {
@@ -87,22 +86,6 @@ public class SelectCity extends Fragment {
 
         );
 
-        //Go to Home layout
-        home =(TextView) myView.findViewById(R.id.Home);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.content_frame, new home());
-                ft.addToBackStack(null);
-                ft.commit();
-
-            }
-        });
-
-
         rc(myView);
         return myView;
 
@@ -116,8 +99,6 @@ public class SelectCity extends Fragment {
 
     private void plv(View view) {
 
-       /* CityModel cityModel = new CityModel(getActivity());
-        allCity = cityModel.getCity(service);*/
 
         Log.w("cityName:",""+cityName);
 

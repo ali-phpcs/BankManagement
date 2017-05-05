@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,16 @@ public class home extends Fragment {
     Button b2;
     Button b3;
     Button b4;
-
+    NavigationView navigationView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         myView = inflater.inflate(R.layout.fragment_home, container, false); // Required empty public constructor
+        //show the navigation menu
+      navigationView = MainActivity.navigationView;
+
+
 
         //buttons action
         //button 1 - go the nearest and less crowded activity
@@ -43,6 +48,11 @@ public class home extends Fragment {
                 ft.replace(R.id.content_frame, select);
                 ft.addToBackStack(null);
                 ft.commit();
+
+                // select home from the navigation menu
+                MainActivity.navigationView.setCheckedItem(R.id.nav_nearest);
+
+
             }
 
         });
@@ -64,6 +74,8 @@ public class home extends Fragment {
                 ft.replace(R.id.content_frame, select);
                 ft.addToBackStack(null);
                 ft.commit();
+                // select the select branch from the navigation menu
+                MainActivity.navigationView.setCheckedItem(R.id.nav_select);
             }
 
         });
@@ -83,6 +95,8 @@ public class home extends Fragment {
                 ft.replace(R.id.content_frame, select);
                 ft.addToBackStack(null);
                 ft.commit();
+                // select favorite from the navigation menu
+                MainActivity.navigationView.setCheckedItem(R.id.nav_favorit);
             }
 
         });
@@ -97,6 +111,8 @@ public class home extends Fragment {
                 ft.replace(R.id.content_frame, new ContactUs());
                 ft.addToBackStack(null);
                 ft.commit();
+                // select contact us from the navigation menu
+                MainActivity.navigationView.setCheckedItem(R.id.nav_contactus);
             }
 
         });

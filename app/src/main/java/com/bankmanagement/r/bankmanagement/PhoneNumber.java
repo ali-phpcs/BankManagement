@@ -99,7 +99,7 @@ public class PhoneNumber extends AppCompatActivity {
                                            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                                          msg = response.body().getAsJsonObject().get("msg").toString();
                                                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-                                               //response.body().getAsJsonObject().get("msg");
+
 
                                            }
 

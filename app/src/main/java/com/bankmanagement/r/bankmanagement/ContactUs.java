@@ -24,7 +24,7 @@ public class ContactUs extends Fragment {
     View myView;
     TextView mail;
     TextView phone;
-   TextView home;
+    TextView home;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,8 +44,6 @@ public class ContactUs extends Fragment {
                 startActivity(Intent.createChooser(emailIntent, "Send email using..."));
 
             }});
-
-
         //open phone app to call
         phone = (TextView)  myView.findViewById(R.id.telephone);
         phone.setOnClickListener(new View.OnClickListener() {
@@ -58,24 +56,6 @@ public class ContactUs extends Fragment {
             }
         });
 
-        //Go to Home layout
-        home =(TextView) myView.findViewById(R.id.Home);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.content_frame, new home());
-                ft.addToBackStack(null);
-                ft.commit();
-
-            }
-        });
-
-
         return myView;
-
-
     }
 }

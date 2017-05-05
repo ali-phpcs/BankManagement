@@ -66,20 +66,6 @@ public class SendFeedback extends Fragment {
             }
         });
 
-        //Go to Home layout
-        home =(TextView) myView.findViewById(R.id.Home);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.content_frame, new home());
-                ft.addToBackStack(null);
-                ft.commit();
-
-            }
-        });
 
         return myView;
 
@@ -94,7 +80,7 @@ public class SendFeedback extends Fragment {
             Toast.makeText(getActivity(), "All Fields REQUIRED!", Toast.LENGTH_SHORT).show();
         } else {
             sendPost(a1, a2, a4, a3);
-            Toast.makeText(getActivity(), "thank you", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Thank you", Toast.LENGTH_SHORT).show();
         }
     }
 

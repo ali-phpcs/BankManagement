@@ -25,8 +25,6 @@ public class SelectService extends Fragment {
     Button service1;
     Button service2;
     String branch;
-   // String Latitude;
-    //String Longitude;
     TextView home;
 
     @Override
@@ -38,8 +36,6 @@ public class SelectService extends Fragment {
 
         activity = getArguments().getString("activity");
         branch=getArguments().getString("branch");
-       // Latitude=getArguments().getString("Latitude");
-       // Longitude=getArguments().getString(" Longitude");
         //customer service button
         service1 = (Button) view.findViewById(R.id.customer);
 
@@ -49,8 +45,7 @@ public class SelectService extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("activity", activity);
                 bundle.putString("service", "Customer_Service");
-               // bundle.putString("Latitude",Latitude);
-                //bundle.putString("Longitude", Longitude);
+
                 if (activity == "nearest") {
                     NearestAndLessCrowded N = new NearestAndLessCrowded();
 
@@ -142,21 +137,6 @@ public class SelectService extends Fragment {
                     ft.commit();
 
                 }
-            }
-        });
-
-        //Go to Home layout
-        home =(TextView) view.findViewById(R.id.Home);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.content_frame, new home());
-                ft.addToBackStack(null);
-                ft.commit();
-
             }
         });
 

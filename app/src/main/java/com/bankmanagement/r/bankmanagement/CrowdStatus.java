@@ -79,7 +79,7 @@ public class CrowdStatus extends Fragment {
         GetServerData service_api = retrofit_object.create(GetServerData.class);
 
 
-        //Getting vrowd statues of the selected branch from the database
+        //Getting crowd statues of the selected branch from the database
         Call<JsonElement> get_Cities = service_api.getData(branch, service);
         get_Cities.enqueue(new Callback<JsonElement>() {
                                @Override
@@ -168,7 +168,6 @@ public class CrowdStatus extends Fragment {
                                        @Override
                                        public void onFailure(Call<JsonElement> call, Throwable t) {
                                            Log.w("EE", t.getLocalizedMessage().toString());
-                                           //Log.w("EE", t.getCause().toString());
                                        }
                                    }
 
@@ -177,23 +176,7 @@ public class CrowdStatus extends Fragment {
             }
         });
 
-        //Go to Home layout
-        home =(TextView) myView.findViewById(R.id.Home);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.content_frame, new home());
-                ft.addToBackStack(null);
-                ft.commit();
-
-            }
-        });
-
         return myView;
-
     }
 
     public void setLatLog(String lat , String _long){

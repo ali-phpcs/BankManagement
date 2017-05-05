@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -28,10 +29,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolbar;
     public String userPhone;
     static String UserPhone;
-    MySQLite mySQLite;
-    SQLiteDatabase sqliteDB;
     static SqlData sql;
-
+    static NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +43,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.addToBackStack(null);
         ft.commit();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //show the navigation menu
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
 
-
-
+        // select home from the navigation menu
+        navigationView.setCheckedItem(R.id.go_home);
         //show the user's phone number on the navigation header
         userPhone = getIntent().getStringExtra("user'sPhone");
         UserPhone = userPhone;
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView.setNavigationItemSelectedListener(this);
+
 
     }
 
@@ -154,6 +155,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent.putExtra("ToLogin", true);
             getApplicationContext().startActivity(intent);
             Toast.makeText(getApplicationContext(), "Logged out", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.go_home) {
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.content_frame, new home());
+            ft.addToBackStack(null);
+            ft.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);

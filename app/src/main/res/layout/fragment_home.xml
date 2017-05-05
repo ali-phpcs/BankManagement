@@ -51,7 +51,7 @@
                 android:padding="16dp"
                 android:text=" Nearest Less Crowd"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
             <Button
                 android:id="@+id/selectBranch"
@@ -67,7 +67,7 @@
                 android:text=" Select Branch"
                 android:padding="16dp"
                 android:drawableLeft="@mipmap/ic_account_balance_white_24dp"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:textColor="@color/white"  />
 
         </TableRow>
@@ -94,7 +94,7 @@
                 android:text=" Favorite Branch"
                 android:padding="16dp"
                 android:drawableLeft="@mipmap/ic_favorite_white_24dp"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:textColor="@color/white" />
 
             <Button
@@ -110,7 +110,7 @@
                 android:text=" Contact Us"
                 android:padding="16dp"
                 android:drawableLeft="@mipmap/ic_email_white_24dp"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:textColor="@color/white" />
 
         </TableRow>

@@ -99,20 +99,8 @@ public class NearestAndLessCrowded extends Fragment {
 
             );
 
-            //Go to Home layout
-            home =(TextView) view.findViewById(R.id.Home);
-            home.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.content_frame, new home());
-                    ft.addToBackStack(null);
-                    ft.commit();
 
-                }
-            });
 
             rc(view);
         }else{
