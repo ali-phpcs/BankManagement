@@ -76,9 +76,18 @@ public class SendFeedback extends Fragment {
         a2 = q2.getText().toString();
         a3 = q3.getText().toString();
         a4 = q4.getText().toString();
+        int a=Integer.parseInt("1234");
         if (a1.isEmpty() || a2.isEmpty() || a3.isEmpty() || a4.isEmpty()) {
             Toast.makeText(getActivity(), "All Fields REQUIRED!", Toast.LENGTH_SHORT).show();
-        } else {
+        } else if(Integer.parseInt(a1)>4 || Integer.parseInt(a2)>4||Integer.parseInt(a3)>4){
+            Toast.makeText(getActivity(), "Only values 1-4 are accepting for rating",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else if(Integer.parseInt(a1)<1 || Integer.parseInt(a2)<1||Integer.parseInt(a3)<1){
+            Toast.makeText(getActivity(), "Only values 1-4 are accepting for rating",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else{
             sendPost(a1, a2, a4, a3);
             Toast.makeText(getActivity(), "Thank you", Toast.LENGTH_SHORT).show();
         }

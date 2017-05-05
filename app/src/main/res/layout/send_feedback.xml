@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@drawable/bg">
 
@@ -10,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:id="@+id/textView"
-        android:layout_below="@+id/textView5"
+        android:layout_below="@+id/rate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="11dp"
@@ -40,7 +41,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="22dp"
-        android:layout_above="@+id/textView2">
+        android:layout_above="@+id/comment">
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
@@ -57,16 +58,19 @@
                     android:layout_weight="0.87"
                     android:text="  Question"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="14dp" />
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/answer"
                     android:layout_width="74dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:id="@+id/answer"
                     android:text="Answer"
-                    android:textSize="14dp"
-                    android:textColor="@color/colorPrimaryText"/>
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </TableRow>
@@ -164,22 +168,23 @@
     </TableLayout>
 
     <TextView
-        android:text="Send Feedback"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_weight="1"
-        android:textSize="22sp"
-        android:textColor="@color/colorPrimaryText"
-        android:textAlignment="center"
+        android:layout_alignLeft="@+id/textView"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView"
         android:layout_marginTop="15dp"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"/>
+        android:layout_weight="1"
+        android:text="Send Feedback"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/a4"
@@ -187,35 +192,37 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:layout_marginBottom="73dp"
+        android:layout_marginBottom="20dp"
         android:layout_above="@+id/Send"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
         android:layout_alignRight="@+id/Send"
-        android:layout_alignEnd="@+id/Send" />
+        android:layout_alignEnd="@+id/Send"
+        android:layout_alignLeft="@+id/comment"
+        android:layout_alignStart="@+id/comment" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:text="Comment: "
-        android:textSize="14dp"
         android:textColor="@color/colorPrimaryText"
-        android:layout_marginBottom="12dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
         android:layout_above="@+id/a4"
-        android:layout_alignLeft="@+id/a4"
-        android:layout_alignStart="@+id/a4" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rate our application :"
-        android:textSize="14dp"
-        android:textColor="@color/colorPrimaryText"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/textView3"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:id="@+id/rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="25dp"
+        android:text="Rate our application :"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
