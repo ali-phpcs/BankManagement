@@ -120,7 +120,7 @@ public class CrowdStatus extends Fragment {
 
                 Log.i("latitude444",latitude);
                 Log.i("longitude",longitude);
-                String lable=getArguments().getString("branch")+" Branch";
+                String lable =getArguments().getString("branch")+" Branch";
                 String uriBegin="geo:"+latitude+","+ longitude;
                 String query= latitude + "," + longitude+ "(" + lable+")";
                 String encodedQuery = Uri.encode(query);
@@ -135,12 +135,12 @@ public class CrowdStatus extends Fragment {
     });
 
         refresh = (Button) myView.findViewById(R.id.Refresh);
+
         refresh.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-                //refresh the values of the crowd status
+               refresh();
 
             }
 
@@ -191,11 +191,18 @@ public class CrowdStatus extends Fragment {
 
     public  void refresh()
     {
-        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.CrowdStatus);
-        FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
-        fragTransaction.detach(currentFragment);
-        fragTransaction.attach(currentFragment);
-        fragTransaction.commit();
+        Bundle bundle = new Bundle();
+        bundle.putString("branch", branch);
+        bundle.putString("service", service);
+
+        CrowdStatus currentFragment= new CrowdStatus();
+        currentFragment.setArguments(bundle);
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.content_frame, currentFragment);
+        ft.addToBackStack(null);
+        ft.commit();
+
     }
     //Connection Interface
     public interface GetServerData {
