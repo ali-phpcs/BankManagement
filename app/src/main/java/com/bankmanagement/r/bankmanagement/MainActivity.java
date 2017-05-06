@@ -3,7 +3,6 @@ package com.bankmanagement.r.bankmanagement;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -148,12 +146,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ft.commit();
 
         } else if (id == R.id.nav_logout) {
-            Intent intent = new Intent(getApplicationContext(), PhoneNumber.class);
             //send intent "To login = true" in order to unenable the back button after logout
             sql.logOut();
             UserPhone = "";
+            Intent intent = new Intent(getApplicationContext(), PhoneNumber.class);
             intent.putExtra("ToLogin", true);
-            getApplicationContext().startActivity(intent);
+            //Intent in = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
             Toast.makeText(getApplicationContext(), "Logged out", Toast.LENGTH_SHORT).show();
         }
         else if (id == R.id.go_home) {
@@ -168,4 +167,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

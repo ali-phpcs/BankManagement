@@ -111,9 +111,12 @@ public class PhoneNumber extends AppCompatActivity {
 
                     );
 
-                    Intent in = new Intent(getApplicationContext(), MainActivity.class);
-                    in.putExtra("user'sPhone", phone.getText().toString());
-                    startActivity(in);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("user'sPhone", phone.getText().toString());
+                    startActivity(intent);
+                    finish(); // call this to finish the current activity
+
                     //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                 }
 
