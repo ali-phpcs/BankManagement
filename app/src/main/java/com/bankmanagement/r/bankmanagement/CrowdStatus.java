@@ -161,7 +161,7 @@ public class CrowdStatus extends Fragment {
                 addToF.enqueue(new Callback<JsonElement>() {
                                        @Override
                                        public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                                           Toast.makeText(getActivity(), "You have successfully added an branch to favorites list", Toast.LENGTH_SHORT).show();
+                                           Toast.makeText(getActivity(), "You have successfully added the branch to favorites list", Toast.LENGTH_SHORT).show();
 
                                        }
 

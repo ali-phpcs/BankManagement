@@ -1,8 +1,7 @@
 package com.bankmanagement.r.bankmanagement;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,8 +26,7 @@ import retrofit2.http.POST;
 /**
  * The Feedback layout that use for sending feedback form users to the database.
  *
- *  @Copyright © 2017 Bank Crowd System
- *
+ * @Copyright © 2017 Bank Crowd System
  */
 public class SendFeedback extends Fragment {
 
@@ -43,12 +41,13 @@ public class SendFeedback extends Fragment {
     EditText q2;
     EditText q3;
     EditText q4;
-   TextView home;
+    TextView home;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        myView= inflater.inflate(R.layout.send_feedback, container, false);
+        myView = inflater.inflate(R.layout.send_feedback, container, false);
         q1 = (EditText) myView.findViewById(R.id.a1);
         q2 = (EditText) myView.findViewById(R.id.a2);
         q3 = (EditText) myView.findViewById(R.id.a3);
@@ -76,31 +75,32 @@ public class SendFeedback extends Fragment {
         a2 = q2.getText().toString();
         a3 = q3.getText().toString();
         a4 = q4.getText().toString();
-        int a=Integer.parseInt("1234");
+        int a = Integer.parseInt("1234");
         if (a1.isEmpty() || a2.isEmpty() || a3.isEmpty() || a4.isEmpty()) {
             Toast.makeText(getActivity(), "All Fields REQUIRED!", Toast.LENGTH_SHORT).show();
-        } else if(Integer.parseInt(a1)>4 || Integer.parseInt(a2)>4||Integer.parseInt(a3)>4){
+        } else if (Integer.parseInt(a1) > 4 || Integer.parseInt(a2) > 4 || Integer.parseInt(a3) > 4) {
             Toast.makeText(getActivity(), "Only values 1-4 are accepting for rating",
                     Toast.LENGTH_SHORT).show();
-        }
-        else if(Integer.parseInt(a1)<1 || Integer.parseInt(a2)<1||Integer.parseInt(a3)<1){
+        } else if (Integer.parseInt(a1) < 1 || Integer.parseInt(a2) < 1 || Integer.parseInt(a3) < 1) {
             Toast.makeText(getActivity(), "Only values 1-4 are accepting for rating",
                     Toast.LENGTH_SHORT).show();
-        }
-        else{
-            sendPost(a1, a2, a4, a3);
+        } else {
+            sendPost(a1, a2, a3, a4, MainActivity.UserPhone);
             Toast.makeText(getActivity(), "Thank you", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void sendPost(String performance, String quality, String design, String comments) {
-        services.savePost(performance, quality, design, comments).enqueue(new Callback<JsonElement>() {
+    public void sendPost(String performance, String quality, String design, String comments, String user) {
+        services.savePost(performance, quality, design, comments, user).enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                 if (response.isSuccessful()) {
                     Log.i("isSuccessful", "post submitted to API." + response.message());
                     Log.i("isSuccessful000", "" + response.raw());
                     Log.i("isSuccessful111", "" + response.body().toString());
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    startActivity(intent);
+
                 }
             }
 
@@ -117,7 +117,8 @@ public class SendFeedback extends Fragment {
         Call<JsonElement> savePost(@Field("F_Performance") String performance,
                                    @Field("F_Quality") String quality,
                                    @Field("F_Design") String design,
-                                   @Field("F_Comments") String comments);
+                                   @Field("F_Comments") String comments,
+                                   @Field("phone") String phone);
     }
 
 }

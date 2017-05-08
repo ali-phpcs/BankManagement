@@ -4,23 +4,13 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -40,8 +30,7 @@ import retrofit2.http.Query;
 /**
  * The favourite layout that contains a list for favorite branches of the user.
  *
- *  @Copyright © 2017 Bank Crowd System
- *
+ * @Copyright © 2017 Bank Crowd System
  */
 public class FavoriteBranch extends Fragment {
 
@@ -52,20 +41,23 @@ public class FavoriteBranch extends Fragment {
     List<String> branchelist = new ArrayList<>();
     TextView home;
     ListView list_view;
-    ArrayAdapter<String> adapter;
+    private TestAdapter adapter;
     ArrayList<String> list = new ArrayList<String>();
-    ArrayList<String> list_items=new ArrayList<String>();
-    int count=0;
+    ArrayList<String> list_items = new ArrayList<String>();
+    int count = 0;
+    private int i = 0;
+
+    private List<DataUnion> mList;
+    private int cnt = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.favorite_branch, container, false);
-        list_view=(ListView) view.findViewById(R.id.favoriteList);
-        adapter=new ArrayAdapter<String>(view.getContext(),R.layout.city, branchelist);
-        list_view.setAdapter(adapter);
-        list_view.setChoiceMode(list_view.CHOICE_MODE_MULTIPLE_MODAL);
+        view = inflater.inflate(R.layout.favorite_branch, container, false);
+        list_view = (ListView) view.findViewById(R.id.favoriteList);
+
 
         retrofit_object = new Retrofit.Builder().
                 baseUrl(getResources().getString(R.string.baseUrlApi))
@@ -84,22 +76,21 @@ public class FavoriteBranch extends Fragment {
                                    // if(cityName.isEmpty()){
                                    for (int i = 0; i < Data.size(); i++) {
                                        String city = Data.get(i).getAsJsonObject().get("B_Name").toString().replace("\"", "");
-                                       Log.w("C",""+city);
+                                       Log.w("C", "" + city);
                                        branchelist.add(city);
 
                                    }
                                    plv(view);
-                                   Log.w("branch1:",""+branchelist);
+                                   Log.w("branch1:", "" + branchelist);
                                }
+
                                @Override
                                public void onFailure(Call<JsonElement> call, Throwable t) {
-                                   Log.w("EE","error");
+                                   Log.w("EE", "error");
                                }
                            }
 
         );
-        //delete items from the list
-        Delete(view);
 
         //Apply action after clicking on the items list
         Action(view);
@@ -107,6 +98,7 @@ public class FavoriteBranch extends Fragment {
         return view;
 
     }
+
     public void onStart() {
 
         super.onStart();
@@ -115,11 +107,34 @@ public class FavoriteBranch extends Fragment {
 
     private void plv(View view) {
 
-        Log.w("branch:",""+branchelist);
+        Log.w("branch:", "" + branchelist);
 
-        list_view=(ListView) view.findViewById(R.id.favoriteList);
-        adapter=new ArrayAdapter<String>(view.getContext(),R.layout.city, branchelist);
+        mList = new ArrayList<>();
+        for (i = 0; i < (int) branchelist.size(); i++) {
+            DataUnion itemone = new DataUnion();
+            itemone.itag = "delete";
+            itemone.row1 = branchelist.get(i);
+            mList.add(itemone);
+        }
+        adapter = new TestAdapter(getContext(), mList );
+
         list_view.setAdapter(adapter);
+    }
+
+    public void go() {
+        ListView list = (ListView) view.findViewById(R.id.favoriteList);
+        String selectedFromList  = "";
+        Log.w("selectedFromList:", "" + selectedFromList);
+        Bundle bundle = new Bundle();
+        bundle.putString("branch", selectedFromList);
+        bundle.putString("activity", "favorite");
+        SelectService N = new SelectService();
+        N.setArguments(bundle);
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.content_frame, N);
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     private void Action(final View view) {
@@ -142,60 +157,6 @@ public class FavoriteBranch extends Fragment {
                 ft.replace(R.id.content_frame, N);
                 ft.addToBackStack(null);
                 ft.commit();
-
-            }
-        });
-    }
-    private void Delete(final View view) {
-        //delete from the list
-
-        list_view.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
-            @Override
-            public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean b) {
-                count =count+1;
-                actionMode.setTitle(count+ " Items selected");
-                list_items.add(branchelist.get(i));
-
-            }
-
-            @Override
-            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-
-                MenuInflater inflater =actionMode.getMenuInflater();
-                inflater.inflate(R.menu.my_context_menu,menu);
-
-
-                return true;
-            }
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-                return false;
-            }
-
-            @Override
-            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-                switch(menuItem.getItemId()){
-                    case R.id.delete_id:
-                        for(String msg :list_items)
-                        {
-                            adapter.remove(msg);
-
-                        }
-                        Toast.makeText(view.getContext(), "Item removed", Toast.LENGTH_SHORT).show();
-                        count=0;
-                        actionMode.finish();
-                        return true;
-
-                    default:
-                        return false;
-
-                }
-
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode actionMode) {
 
             }
         });
